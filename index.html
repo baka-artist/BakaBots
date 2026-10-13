@@ -713,19 +713,132 @@
        ====================================================== */
 
     .raffle-counter {
-      position: fixed; top: 18px; right: 18px; z-index: 50;
-      padding: 11px 15px; border: 1px solid rgba(255,104,203,.32);
-      border-radius: 14px; background: rgba(10,12,21,.88);
-      backdrop-filter: blur(12px); box-shadow: 0 12px 40px rgba(0,0,0,.35);
+      position: relative;
+      width: min(760px, 100%);
+      margin: 0 auto 22px;
+      padding: 0;
+      text-align: left;
+    }
+
+    .raffle-counter-button {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 13px 16px;
+      border: 1px solid rgba(255,104,203,.32);
+      border-radius: 14px;
+      color: var(--text);
+      background: rgba(255,104,203,.07);
+      box-shadow: 0 12px 40px rgba(0,0,0,.18);
+    }
+
+    .raffle-counter-button:hover {
+      border-color: rgba(255,104,203,.55);
+      background: rgba(255,104,203,.10);
+    }
+
+    .raffle-counter-button small {
+      display: block;
+      color: var(--pink);
+      font-size: .65rem;
+      font-weight: 850;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+
+    .raffle-counter-button strong {
+      display: block;
+      margin-top: 2px;
+      font-size: .9rem;
+    }
+
+    .raffle-counter-arrow {
+      color: var(--pink);
+      font-size: 1rem;
+      font-weight: 900;
+    }
+
+    .raffle-popover {
+      display: none;
+      margin-top: 8px;
+      padding: 15px;
+      border: 1px solid rgba(255,104,203,.30);
+      border-radius: 14px;
+      background: rgba(10,12,21,.97);
+      box-shadow: 0 20px 60px rgba(0,0,0,.38);
+    }
+
+    .raffle-popover.open {
+      display: block;
+    }
+
+    .raffle-popover-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 10px;
+    }
+
+    .raffle-popover-header strong {
+      font-size: .86rem;
+    }
+
+    .raffle-popover-close {
+      width: 31px;
+      height: 31px;
+      flex-shrink: 0;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      color: var(--text);
+      background: rgba(255,255,255,.05);
+    }
+
+    .raffle-entries {
+      display: grid;
+      max-height: 250px;
+      overflow: auto;
+    }
+
+    .raffle-entry {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) minmax(110px,.8fr) auto;
+      gap: 12px;
+      align-items: center;
+      padding: 10px 4px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      font-size: .76rem;
+    }
+
+    .raffle-entry:first-child {
+      border-top: 0;
+    }
+
+    .raffle-entry-user {
+      min-width: 0;
+      overflow-wrap: anywhere;
+      font-weight: 850;
+    }
+
+    .raffle-entry-wallet {
+      color: var(--muted);
+      overflow-wrap: anywhere;
+    }
+
+    .raffle-entry-tickets {
+      color: var(--pink);
+      font-weight: 850;
+      white-space: nowrap;
       text-align: right;
     }
-    .raffle-counter small { display:block; color:var(--pink); font-size:.65rem; font-weight:850; letter-spacing:.11em; text-transform:uppercase; }
-    .raffle-counter strong { display:block; margin-top:2px; font-size:.9rem; }
-    .raffle-entries { display:grid; gap:7px; margin-top:9px; max-height:220px; overflow:auto; min-width:210px; }
-    .raffle-entry { padding-top:7px; border-top:1px solid rgba(255,255,255,.08); text-align:left; }
-    .raffle-entry-top { display:flex; justify-content:space-between; gap:14px; font-size:.75rem; font-weight:800; }
-    .raffle-entry-wallet { margin-top:2px; color:var(--muted); font-size:.68rem; }
-    .raffle-empty { margin-top:7px; color:var(--muted); font-size:.7rem; text-align:left; }
+
+    .raffle-empty {
+      color: var(--muted);
+      font-size: .76rem;
+      padding: 7px 2px 3px;
+    }
     .reserve-button.view-reservation { color:var(--text); background:rgba(255,104,203,.10); border:1px solid rgba(255,104,203,.28); }
     .reserved-details, .raffle-stage { margin-top:15px; padding:18px; border:1px solid rgba(255,104,203,.25); border-radius:16px; background:rgba(255,104,203,.04); }
     .detail-row { display:flex; justify-content:space-between; gap:16px; margin-top:11px; color:var(--muted); font-size:.86rem; }
@@ -775,26 +888,28 @@
       }
 
       .raffle-counter {
-        top: 10px;
-        right: 10px;
-        max-width: calc(100vw - 20px);
+        margin-bottom: 18px;
       }
 
-      .raffle-entries {
-        min-width: 180px;
-        max-height: 150px;
+      .raffle-entry {
+        grid-template-columns: 1fr auto;
+        gap: 4px 10px;
+      }
+
+      .raffle-entry-wallet {
+        grid-column: 1 / -1;
+        font-size: .69rem;
+      }
+
+      .raffle-entry-tickets {
+        grid-column: 2;
+        grid-row: 1;
       }
     }
   </style>
 </head>
 
 <body>
-  <div class="raffle-counter" title="Verified plushie raffle tickets">
-    <small>🎟️ Plushie Raffle</small>
-    <strong><span id="verifiedTicketCount">0</span> verified tickets</strong>
-    <div id="raffleEntries" class="raffle-entries"></div>
-  </div>
-
   <!-- ====================================================
        HERO
        ==================================================== -->
@@ -834,6 +949,24 @@
   <main>
 
     <div class="container">
+
+      <div class="raffle-counter">
+        <button id="raffleCounterButton" class="raffle-counter-button" type="button" aria-expanded="false">
+          <span>
+            <small>🎟️ Plushie Raffle</small>
+            <strong><span id="verifiedTicketCount">0</span> verified tickets</strong>
+          </span>
+          <span class="raffle-counter-arrow">VIEW ↘</span>
+        </button>
+
+        <div id="rafflePopover" class="raffle-popover">
+          <div class="raffle-popover-header">
+            <strong>Verified raffle entries</strong>
+            <button id="closeRafflePopover" class="raffle-popover-close" type="button" aria-label="Close raffle entries">✕</button>
+          </div>
+          <div id="raffleEntries" class="raffle-entries"></div>
+        </div>
+      </div>
 
       <section class="search-section">
 
@@ -1117,7 +1250,7 @@
     const ticketMinus=$("ticketMinus"), ticketPlus=$("ticketPlus"), ticketCount=$("ticketCount"), raffleTotal=$("raffleTotal"), shippingCheck=$("shippingCheck"), continueRaffle=$("continueRaffle");
     const paymentAmount=$("paymentAmount"), raffleWalletDisplay=$("raffleWalletDisplay"), copyRaffleWallet=$("copyRaffleWallet");
     const raffleSenderWallet=$("raffleSenderWallet"), submitRaffle=$("submitRaffle"), backToTickets=$("backToTickets"), raffleMessage=$("raffleMessage"), raffleSuccessText=$("raffleSuccessText"), raffleDone=$("raffleDone");
-    const verifiedTicketCount=$("verifiedTicketCount"), raffleEntries=$("raffleEntries");
+    const verifiedTicketCount=$("verifiedTicketCount"), raffleEntries=$("raffleEntries"), raffleCounterButton=$("raffleCounterButton"), rafflePopover=$("rafflePopover"), closeRafflePopover=$("closeRafflePopover");
 
     let selectedBot=null, raffleTickets=1;
 
@@ -1138,11 +1271,9 @@
 
         raffleEntries.innerHTML=entries.map(entry=>`
           <div class="raffle-entry">
-            <div class="raffle-entry-top">
-              <span>${escapeHTML(entry.username||"Unknown")}</span>
-              <span>${Number(entry.tickets)||0} ${Number(entry.tickets)===1?"ticket":"tickets"}</span>
-            </div>
+            <div class="raffle-entry-user">${escapeHTML(entry.username||"Unknown")}</div>
             <div class="raffle-entry-wallet">${escapeHTML(entry.wallet_display||"")}</div>
+            <div class="raffle-entry-tickets">${Number(entry.tickets)||0} ${Number(entry.tickets)===1?"ticket":"tickets"}</div>
           </div>
         `).join("");
       }catch(err){ console.error("Raffle stats:",err); }
@@ -1271,6 +1402,14 @@
 
     function shortWallet(w){ return w.slice(0,6)+"..."+w.slice(-4); }
     function escapeHTML(v){ return String(v).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;"); }
+
+    function setRafflePopover(open){
+      rafflePopover.classList.toggle("open",open);
+      raffleCounterButton.setAttribute("aria-expanded",String(open));
+    }
+
+    raffleCounterButton.addEventListener("click",()=>setRafflePopover(!rafflePopover.classList.contains("open")));
+    closeRafflePopover.addEventListener("click",()=>setRafflePopover(false));
 
     searchButton.addEventListener("click",searchBots);
     let searchTimer;
