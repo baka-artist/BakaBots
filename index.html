@@ -1592,7 +1592,28 @@
       "click",
       searchBots
     );
+    
+let searchTimer;
 
+usernameInput.addEventListener("input", () => {
+
+  clearTimeout(searchTimer);
+
+  const value = usernameInput.value.trim();
+
+  // Don't flood the API when the box is empty.
+  if (!value) {
+    results.innerHTML = "";
+    message.textContent = "";
+    return;
+  }
+
+  // Wait briefly after typing before searching.
+  searchTimer = setTimeout(() => {
+    searchBots();
+  }, 300);
+
+});
 
     usernameInput.addEventListener(
       "keydown",
