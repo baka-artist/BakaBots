@@ -1,0 +1,1651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Baka Bots</title>
+
+  <style>
+    /* ======================================================
+       BAKA BOTS
+       Bright playful / Baka Bot
+       ====================================================== */
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #fff8ef;
+      --bg2: #fff1dc;
+      --panel: rgba(255,255,255,0.88);
+      --panel2: #ffffff;
+
+      --border: rgba(46,45,49,0.12);
+      --border-bright: rgba(0,214,133,0.42);
+
+      --text: #2e2d31;
+      --muted: #716b78;
+
+      --mint: #00d685;
+      --pink: #ff7f9c;
+      --purple: #7650a1;
+      --yellow: #ffc743;
+      --orange: #f45b1f;
+      --blue: #117fa7;
+      --lime: #50e657;
+
+      --danger: #d93461;
+      --success: #008f64;
+
+      --radius: 22px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      color: var(--text);
+
+      background:
+        radial-gradient(circle at 10% 4%, rgba(0,214,133,.20), transparent 24%),
+        radial-gradient(circle at 92% 14%, rgba(255,127,156,.22), transparent 25%),
+        radial-gradient(circle at 78% 62%, rgba(255,199,67,.18), transparent 28%),
+        var(--bg);
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .container {
+      width: min(1100px, 92%);
+      margin: auto;
+    }
+
+    /* ======================================================
+       HERO
+       ====================================================== */
+
+    .hero {
+      padding: 75px 0 50px;
+      border-bottom: 1px solid var(--border);
+      background:
+        radial-gradient(circle at 82% 35%, rgba(80,230,87,.22), transparent 24%),
+        radial-gradient(circle at 14% 75%, rgba(17,127,167,.12), transparent 28%);
+    }
+
+    .eyebrow {
+      color: var(--mint);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin-top: 15px;
+
+      font-size: clamp(3.5rem, 11vw, 7rem);
+      line-height: 0.88;
+      letter-spacing: -0.075em;
+
+      max-width: 850px;
+    }
+
+    h1 span {
+      color: var(--pink);
+      text-shadow: 4px 4px 0 rgba(255,199,67,.38);
+    }
+
+    h1 {
+      color: #2e2d31;
+      text-shadow: 5px 5px 0 rgba(0,214,133,.13);
+    }
+
+    .step:nth-child(1) { border-top: 4px solid var(--mint); }
+    .step:nth-child(2) { border-top: 4px solid var(--pink); }
+    .step:nth-child(3) { border-top: 4px solid var(--yellow); }
+
+    .hero-text {
+      max-width: 630px;
+      margin-top: 25px;
+
+      color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 1.7;
+    }
+
+    .handmade-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+
+      margin-top: 22px;
+      padding: 9px 14px;
+
+      border: 1px solid var(--border);
+      border-radius: 100px;
+
+      background: rgba(255,255,255,.72);
+
+      color: #4f4854;
+      font-size: 0.82rem;
+    }
+
+    .live-dot {
+      width: 8px;
+      height: 8px;
+
+      border-radius: 50%;
+
+      background: var(--mint);
+      box-shadow: 0 0 15px var(--mint);
+    }
+
+    .baka-palette {
+      display: flex;
+      gap: 7px;
+      margin-top: 14px;
+    }
+
+    .baka-palette span {
+      width: 34px;
+      height: 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(46,45,49,.08);
+    }
+
+    .baka-palette span:nth-child(1) { background: var(--mint); }
+    .baka-palette span:nth-child(2) { background: var(--pink); }
+    .baka-palette span:nth-child(3) { background: var(--yellow); }
+    .baka-palette span:nth-child(4) { background: var(--purple); }
+    .baka-palette span:nth-child(5) { background: var(--blue); }
+
+    /* ======================================================
+       SEARCH
+       ====================================================== */
+
+    main {
+      padding: 55px 0 100px;
+    }
+
+    .search-section {
+      max-width: 760px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .search-section h2 {
+      font-size: clamp(1.7rem, 4vw, 2.3rem);
+      letter-spacing: -0.03em;
+    }
+
+    .search-section p {
+      margin-top: 8px;
+      color: var(--muted);
+    }
+
+    .search-box {
+      display: flex;
+      gap: 10px;
+
+      margin-top: 25px;
+    }
+
+    .search-box input {
+      flex: 1;
+
+      min-width: 0;
+
+      padding: 16px 18px;
+
+      color: var(--text);
+      background: rgba(255,255,255,.92);
+
+      border: 1px solid var(--border);
+      border-radius: 14px;
+
+      outline: none;
+
+      transition: 0.2s;
+    }
+
+    .search-box input:focus {
+      border-color: var(--mint);
+      box-shadow: 0 0 0 3px rgba(115,255,226,0.08);
+    }
+
+    .primary-button {
+      border: 0;
+      border-radius: 14px;
+
+      padding: 15px 23px;
+
+      color: #06110e;
+      background: var(--mint);
+
+      font-weight: 850;
+
+      transition: 0.2s;
+    }
+
+    .primary-button:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.06);
+    }
+
+    .primary-button:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* ======================================================
+       STATUS MESSAGE
+       ====================================================== */
+
+    #message {
+      min-height: 28px;
+
+      margin-top: 18px;
+
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    #message.error {
+      color: var(--danger);
+    }
+
+    #message.success {
+      color: var(--success);
+    }
+
+    /* ======================================================
+       BOT RESULTS
+       ====================================================== */
+
+    .results {
+      display: grid;
+
+      grid-template-columns:
+        repeat(auto-fit, minmax(260px, 340px));
+
+      justify-content: center;
+
+      gap: 20px;
+
+      margin-top: 35px;
+    }
+
+    .bot-card {
+      overflow: hidden;
+
+      border: 2px solid rgba(46,45,49,.10);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.94);
+      text-align: left;
+      box-shadow:
+        8px 8px 0 rgba(118,80,161,.13),
+        0 18px 45px rgba(87,62,100,.10);
+
+      transition:
+        transform 0.22s ease,
+        border-color 0.22s ease;
+    }
+
+    .bot-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0,214,133,.48);
+    }
+
+    .bot-image-wrap {
+      aspect-ratio: 1 / 1;
+
+      background:
+        radial-gradient(circle at 50% 30%, rgba(255,199,67,.24), transparent 42%),
+        #f4ecff;
+
+      overflow: hidden;
+    }
+
+    .bot-image {
+      display: block;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+    }
+
+    .bot-info {
+      padding: 18px;
+    }
+
+    .bot-username {
+      font-size: 1.15rem;
+      font-weight: 800;
+    }
+
+    .bot-id {
+      margin-top: 4px;
+
+      color: var(--muted);
+      font-size: 0.77rem;
+    }
+
+    .status-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      margin-top: 15px;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+
+      font-size: 0.77rem;
+      font-weight: 750;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .status.available {
+      color: var(--mint);
+    }
+
+    .status.reserved {
+      color: var(--pink);
+    }
+
+    .reserve-button {
+      width: 100%;
+
+      margin-top: 16px;
+      padding: 12px;
+
+      border: 0;
+      border-radius: 11px;
+
+      color: #07110f;
+      background: var(--mint);
+
+      font-weight: 850;
+    }
+
+    .reserve-button:disabled {
+      color: #7d8191;
+      background: #292c38;
+
+      cursor: not-allowed;
+    }
+
+    /* ======================================================
+       HOW IT WORKS
+       ====================================================== */
+
+    .how-it-works {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 14px;
+
+      margin-top: 75px;
+    }
+
+    .step {
+      padding: 22px;
+
+      border: 1px solid var(--border);
+      border-radius: 17px;
+
+      background: rgba(255,255,255,.72);
+    }
+
+    .step-number {
+      color: var(--mint);
+
+      font-size: 0.72rem;
+      font-weight: 850;
+      letter-spacing: 0.15em;
+    }
+
+    .step h3 {
+      margin-top: 9px;
+      font-size: 1rem;
+    }
+
+    .step p {
+      margin-top: 7px;
+
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.6;
+    }
+
+    /* ======================================================
+       MODAL
+       ====================================================== */
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+
+      display: none;
+      align-items: center;
+      justify-content: center;
+
+      padding: 20px;
+
+      background: rgba(63,44,73,.38);
+      backdrop-filter: blur(10px);
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal {
+      width: min(570px, 100%);
+      max-height: 92vh;
+
+      overflow-y: auto;
+
+      padding: 25px;
+
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 24px;
+
+      background:
+        linear-gradient(145deg, #fffdf8, #fff3e8);
+
+      box-shadow:
+        0 40px 120px rgba(0,0,0,0.65);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+
+      gap: 15px;
+    }
+
+    .modal-header h2 {
+      margin-top: 5px;
+
+      font-size: 1.6rem;
+      letter-spacing: -0.03em;
+    }
+
+    .modal-close {
+      width: 38px;
+      height: 38px;
+
+      flex-shrink: 0;
+
+      border: 1px solid var(--border);
+      border-radius: 10px;
+
+      color: var(--text);
+      background: rgba(255,255,255,0.05);
+    }
+
+    .selected-bot {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+
+      margin-top: 20px;
+      padding: 12px;
+
+      border: 1px solid var(--border);
+      border-radius: 14px;
+
+      background: rgba(118,80,161,.055);
+    }
+
+    .selected-bot img {
+      width: 62px;
+      height: 62px;
+
+      object-fit: cover;
+
+      border-radius: 11px;
+    }
+
+    .selected-bot small {
+      color: var(--muted);
+    }
+
+    .selected-bot strong {
+      display: block;
+      margin-top: 2px;
+    }
+
+    /* ======================================================
+       OPTION CARDS
+       ====================================================== */
+
+    .option {
+      margin-top: 15px;
+      padding: 18px;
+
+      border: 1px solid var(--border);
+      border-radius: 16px;
+    }
+
+    .option.airdrop {
+      border-color: rgba(115,255,226,0.25);
+    }
+
+    .option.raffle {
+      border-color: rgba(255,104,203,0.25);
+    }
+
+    .option-title {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+
+      font-weight: 850;
+    }
+
+    .option p {
+      margin-top: 7px;
+
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+
+    .wallet-input {
+      width: 100%;
+
+      margin-top: 13px;
+      padding: 13px;
+
+      border: 1px solid var(--border);
+      border-radius: 11px;
+
+      color: var(--text);
+      background: rgba(255,255,255,.92);
+
+      outline: none;
+    }
+
+    .wallet-input:focus {
+      border-color: var(--mint);
+    }
+
+    .submit-airdrop {
+      width: 100%;
+
+      margin-top: 10px;
+      padding: 12px;
+
+      border: 0;
+      border-radius: 11px;
+
+      color: #06110e;
+      background: var(--mint);
+
+      font-weight: 850;
+    }
+
+    .raffle-price {
+      color: var(--text) !important;
+      font-weight: 800;
+    }
+
+    .shipping {
+      color: #ff9ddd !important;
+      font-weight: 750;
+    }
+
+    .coming-soon {
+      width: 100%;
+
+      margin-top: 12px;
+      padding: 12px;
+
+      border: 1px solid rgba(255,104,203,0.2);
+      border-radius: 11px;
+
+      color: #756d78;
+      background: rgba(255,104,203,0.07);
+
+      font-weight: 800;
+      cursor: not-allowed;
+    }
+
+    .form-message {
+      min-height: 20px;
+
+      margin-top: 10px;
+
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .form-message.error {
+      color: var(--danger);
+    }
+
+    .form-message.success {
+      color: var(--success);
+    }
+
+    .safety {
+      margin-top: 18px;
+
+      color: #817783;
+      font-size: 0.75rem;
+      line-height: 1.6;
+    }
+
+    /* ======================================================
+       SUCCESS
+       ====================================================== */
+
+    .success-screen {
+      display: none;
+      text-align: center;
+      padding: 20px 5px 5px;
+    }
+
+    .success-icon {
+      display: grid;
+      place-items: center;
+
+      width: 70px;
+      height: 70px;
+
+      margin: auto;
+
+      border: 1px solid rgba(115,255,226,0.3);
+      border-radius: 50%;
+
+      color: var(--mint);
+      background: rgba(115,255,226,0.08);
+
+      font-size: 2rem;
+    }
+
+    .success-screen h2 {
+      margin-top: 18px;
+    }
+
+    .success-screen p {
+      margin-top: 8px;
+
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ======================================================
+       FOOTER
+       ====================================================== */
+
+    footer {
+      padding: 30px 0 45px;
+
+      border-top: 1px solid var(--border);
+
+      color: #817783;
+      font-size: 0.82rem;
+      line-height: 1.7;
+    }
+
+
+    /* ======================================================
+       V3: RESERVED DETAILS + RAFFLE
+       ====================================================== */
+
+    .raffle-counter {
+      position: relative;
+      width: min(760px, 100%);
+      margin: 0 auto 22px;
+      padding: 0;
+      text-align: left;
+    }
+
+    .raffle-counter-button {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 13px 16px;
+      border: 1px solid rgba(255,104,203,.32);
+      border-radius: 14px;
+      color: var(--text);
+      background: rgba(255,104,203,.07);
+      box-shadow: 0 12px 40px rgba(0,0,0,.18);
+    }
+
+    .raffle-counter-button:hover {
+      border-color: rgba(255,104,203,.55);
+      background: rgba(255,104,203,.10);
+    }
+
+    .raffle-counter-button small {
+      display: block;
+      color: var(--pink);
+      font-size: .65rem;
+      font-weight: 850;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+
+    .raffle-counter-button strong {
+      display: block;
+      margin-top: 2px;
+      font-size: .9rem;
+    }
+
+    .raffle-counter-arrow {
+      color: var(--pink);
+      font-size: 1rem;
+      font-weight: 900;
+    }
+
+    .raffle-popover {
+      display: none;
+      margin-top: 8px;
+      padding: 15px;
+      border: 1px solid rgba(255,104,203,.30);
+      border-radius: 14px;
+      background: rgba(255,253,248,.98);
+      box-shadow: 0 20px 60px rgba(0,0,0,.38);
+    }
+
+    .raffle-popover.open {
+      display: block;
+    }
+
+    .raffle-popover-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 10px;
+    }
+
+    .raffle-popover-header strong {
+      font-size: .86rem;
+    }
+
+    .raffle-popover-close {
+      width: 31px;
+      height: 31px;
+      flex-shrink: 0;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      color: var(--text);
+      background: rgba(118,80,161,.07);
+    }
+
+    .raffle-entries {
+      display: grid;
+      max-height: 250px;
+      overflow: auto;
+    }
+
+    .raffle-entry {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) minmax(110px,.8fr) auto;
+      gap: 12px;
+      align-items: center;
+      padding: 10px 4px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      font-size: .76rem;
+    }
+
+    .raffle-entry:first-child {
+      border-top: 0;
+    }
+
+    .raffle-entry-user {
+      min-width: 0;
+      overflow-wrap: anywhere;
+      font-weight: 850;
+    }
+
+    .raffle-entry-wallet {
+      color: var(--muted);
+      overflow-wrap: anywhere;
+    }
+
+    .raffle-entry-tickets {
+      color: var(--pink);
+      font-weight: 850;
+      white-space: nowrap;
+      text-align: right;
+    }
+
+    .raffle-empty {
+      color: var(--muted);
+      font-size: .76rem;
+      padding: 7px 2px 3px;
+    }
+    .reserve-button.view-reservation { color:var(--text); background:rgba(255,104,203,.10); border:1px solid rgba(255,104,203,.28); }
+    .reserved-details, .raffle-stage { margin-top:15px; padding:18px; border:1px solid rgba(255,104,203,.25); border-radius:16px; background:rgba(255,104,203,.04); }
+    .detail-row { display:flex; justify-content:space-between; gap:16px; margin-top:11px; color:var(--muted); font-size:.86rem; }
+    .detail-row strong { color:var(--text); text-align:right; overflow-wrap:anywhere; }
+    .raffle-launch, .raffle-action {
+      width:100%; margin-top:13px; padding:12px; border-radius:11px; font-weight:850;
+    }
+    .raffle-launch { border:1px solid rgba(255,104,203,.30); color:var(--text); background:rgba(255,104,203,.10); }
+    .raffle-action { border:0; color:#3b1724; background:var(--pink); }
+    .raffle-action:disabled { opacity:.5; cursor:not-allowed; }
+    .ticket-picker { display:flex; align-items:center; justify-content:center; gap:18px; margin-top:17px; }
+    .ticket-button { width:42px; height:42px; border:1px solid var(--border); border-radius:11px; color:var(--text); background:rgba(255,255,255,.82); font-size:1.25rem; font-weight:850; }
+    .ticket-count { min-width:55px; text-align:center; font-size:1.45rem; font-weight:900; }
+    .raffle-total { margin-top:13px; text-align:center; color:var(--pink); font-weight:850; }
+    .raffle-check { display:flex; align-items:flex-start; gap:10px; margin-top:16px; color:var(--muted); font-size:.82rem; line-height:1.5; }
+    .raffle-check input { margin-top:3px; accent-color:var(--pink); }
+    .payment-box { margin-top:14px; padding:14px; border:1px solid var(--border); border-radius:13px; background:rgba(118,80,161,.055); }
+    .payment-amount { color:var(--pink); font-size:1.2rem; font-weight:900; }
+    .raffle-wallet { margin-top:10px; color:var(--muted); font-size:.78rem; overflow-wrap:anywhere; }
+    .copy-button { width:100%; margin-top:10px; padding:10px; border:1px solid var(--border); border-radius:10px; color:var(--text); background:rgba(255,255,255,.82); font-weight:800; }
+    .raffle-note { margin-top:10px; color:var(--muted); font-size:.78rem; line-height:1.5; }
+
+
+    /* ======================================================
+       V6: FANCY BAKA MODAL
+       ====================================================== */
+
+    .modal {
+      position: relative;
+      isolation: isolate;
+      border: 2px solid rgba(118,80,161,.16);
+      box-shadow:
+        0 28px 80px rgba(65,45,76,.28),
+        10px 10px 0 rgba(255,127,156,.18),
+        -8px -8px 0 rgba(0,214,133,.12);
+    }
+
+    .modal::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      border-radius: inherit;
+      background:
+        radial-gradient(circle at 92% 5%, rgba(255,199,67,.28), transparent 20%),
+        radial-gradient(circle at 4% 94%, rgba(0,214,133,.16), transparent 23%),
+        radial-gradient(circle at 75% 72%, rgba(255,127,156,.12), transparent 25%);
+    }
+
+    .modal::after {
+      content: "✦";
+      position: absolute;
+      top: 18px;
+      right: 72px;
+      color: var(--yellow);
+      font-size: 1.25rem;
+      transform: rotate(12deg);
+      text-shadow: 20px 18px 0 var(--pink);
+      pointer-events: none;
+    }
+
+    .modal-header h2 {
+      font-size: clamp(1.65rem, 4vw, 2rem);
+      line-height: 1.05;
+    }
+
+    .modal-close {
+      border: 2px solid rgba(46,45,49,.10);
+      background: #fff;
+      box-shadow: 3px 3px 0 rgba(118,80,161,.12);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .modal-close:hover {
+      transform: translate(-1px,-1px) rotate(4deg);
+      box-shadow: 5px 5px 0 rgba(255,127,156,.18);
+    }
+
+    .selected-bot {
+      border: 2px solid rgba(118,80,161,.13);
+      background:
+        linear-gradient(105deg, rgba(118,80,161,.07), rgba(255,127,156,.06), rgba(255,199,67,.07));
+      box-shadow: 4px 4px 0 rgba(118,80,161,.08);
+    }
+
+    .selected-bot img {
+      border: 2px solid #fff;
+      box-shadow: 3px 3px 0 rgba(0,214,133,.20);
+      transform: rotate(-2deg);
+    }
+
+    .reserved-details,
+    .option.raffle,
+    .option.airdrop,
+    .raffle-stage {
+      position: relative;
+      overflow: hidden;
+      border-width: 2px;
+      box-shadow: 5px 5px 0 rgba(255,127,156,.08);
+    }
+
+    .reserved-details {
+      background:
+        linear-gradient(135deg, rgba(255,127,156,.10), rgba(255,255,255,.55));
+    }
+
+    .reserved-details::after {
+      content: "RESERVED";
+      position: absolute;
+      right: -22px;
+      top: 15px;
+      padding: 4px 28px;
+      color: rgba(118,80,161,.28);
+      border: 1px solid rgba(118,80,161,.12);
+      background: rgba(255,255,255,.52);
+      font-size: .58rem;
+      font-weight: 950;
+      letter-spacing: .13em;
+      transform: rotate(35deg);
+    }
+
+    .option.raffle {
+      border-color: rgba(255,127,156,.42);
+      background:
+        radial-gradient(circle at 95% 5%, rgba(255,199,67,.20), transparent 26%),
+        linear-gradient(135deg, rgba(255,127,156,.09), rgba(255,255,255,.66));
+    }
+
+    .option.raffle::before {
+      content: "✦";
+      position: absolute;
+      right: 18px;
+      top: 14px;
+      color: var(--yellow);
+      font-size: 1.15rem;
+    }
+
+    .option-title {
+      font-size: .96rem;
+    }
+
+    .raffle-price {
+      display: inline-block;
+      margin-top: 12px !important;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,199,67,.28);
+      border: 1px solid rgba(244,91,31,.12);
+    }
+
+    .shipping {
+      display: inline-block;
+      margin-top: 9px !important;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,127,156,.12);
+    }
+
+    .raffle-launch,
+    .raffle-action,
+    .submit-airdrop {
+      position: relative;
+      overflow: hidden;
+      border: 2px solid rgba(46,45,49,.10);
+      box-shadow: 4px 4px 0 rgba(118,80,161,.16);
+      transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+    }
+
+    .raffle-launch {
+      color: #fff;
+      background: linear-gradient(90deg, var(--purple), #a657a3, var(--pink));
+    }
+
+    .raffle-launch:hover,
+    .raffle-action:hover,
+    .submit-airdrop:hover {
+      transform: translate(-2px,-2px);
+      box-shadow: 6px 6px 0 rgba(0,214,133,.20);
+      filter: saturate(1.06);
+    }
+
+    .detail-row {
+      padding: 5px 0;
+      border-bottom: 1px dashed rgba(118,80,161,.12);
+    }
+
+    .detail-row:last-of-type {
+      border-bottom: 0;
+    }
+
+    .safety {
+      padding: 10px 12px;
+      border-radius: 11px;
+      background: rgba(118,80,161,.055);
+      border: 1px dashed rgba(118,80,161,.16);
+    }
+
+    @media (max-width: 650px) {
+      .modal {
+        box-shadow:
+          0 22px 60px rgba(65,45,76,.25),
+          5px 5px 0 rgba(255,127,156,.16);
+      }
+
+      .modal::after {
+        display: none;
+      }
+
+      .reserved-details::after {
+        opacity: .55;
+      }
+
+      .raffle-price,
+      .shipping {
+        border-radius: 10px;
+      }
+    }
+
+    /* ======================================================
+       MOBILE
+       ====================================================== */
+
+    @media (max-width: 650px) {
+
+      .hero {
+        padding-top: 50px;
+      }
+
+      .search-box {
+        flex-direction: column;
+      }
+
+      .primary-button {
+        width: 100%;
+      }
+
+      .how-it-works {
+        grid-template-columns: 1fr;
+      }
+
+      .modal {
+        padding: 19px;
+      }
+
+      .raffle-counter {
+        margin-bottom: 18px;
+      }
+
+      .raffle-entry {
+        grid-template-columns: 1fr auto;
+        gap: 4px 10px;
+      }
+
+      .raffle-entry-wallet {
+        grid-column: 1 / -1;
+        font-size: .69rem;
+      }
+
+      .raffle-entry-tickets {
+        grid-column: 2;
+        grid-row: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ====================================================
+       HERO
+       ==================================================== -->
+
+  <header class="hero">
+
+    <div class="container">
+
+      <div class="eyebrow">
+        A SMALL INTERNET EXPERIMENT / 001
+      </div>
+
+      <h1>
+        BAKA <span>BOTS</span>
+      </h1>
+
+      <p class="hero-text">
+        A growing collection of tiny Bot PFPs drawn one by one
+        in Illustrator. Search your X username to find the Bot
+        made for you.
+      </p>
+
+      <div class="handmade-pill">
+        <span class="live-dot"></span>
+        Hand-drawn by Baka · No AI-generated artwork
+      </div>
+
+      <div class="baka-palette" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- ====================================================
+       MAIN
+       ==================================================== -->
+
+  <main>
+
+    <div class="container">
+
+      <div class="raffle-counter">
+        <button id="raffleCounterButton" class="raffle-counter-button" type="button" aria-expanded="false">
+          <span>
+            <small>🎟️ Plushie Raffle</small>
+            <strong><span id="verifiedTicketCount">0</span> verified tickets</strong>
+          </span>
+          <span class="raffle-counter-arrow">VIEW ↘</span>
+        </button>
+
+        <div id="rafflePopover" class="raffle-popover">
+          <div class="raffle-popover-header">
+            <strong>Verified raffle entries</strong>
+            <button id="closeRafflePopover" class="raffle-popover-close" type="button" aria-label="Close raffle entries">✕</button>
+          </div>
+          <div id="raffleEntries" class="raffle-entries"></div>
+        </div>
+      </div>
+
+      <section class="search-section">
+
+        <h2>Find your Bot 🤖</h2>
+
+        <p>
+          Enter the X username associated with your Bot.
+        </p>
+
+        <div class="search-box">
+
+          <input
+            id="usernameInput"
+            type="text"
+            placeholder="@username"
+            autocomplete="off"
+          />
+
+          <button
+            id="searchButton"
+            class="primary-button"
+          >
+            Search
+          </button>
+
+        </div>
+
+        <div id="message"></div>
+
+      </section>
+
+
+      <!-- RESULTS -->
+
+      <section
+        id="results"
+        class="results"
+      ></section>
+
+
+      <!-- HOW IT WORKS -->
+
+      <section class="how-it-works">
+
+        <div class="step">
+
+          <div class="step-number">
+            01 / FIND
+          </div>
+
+          <h3>Search your username</h3>
+
+          <p>
+            Find the Bot artwork associated with your X account.
+          </p>
+
+        </div>
+
+
+        <div class="step">
+
+          <div class="step-number">
+            02 / RESERVE
+          </div>
+
+          <h3>Submit your wallet</h3>
+
+          <p>
+            Reserve your Bot by submitting your public Ethereum
+            mainnet wallet address.
+          </p>
+
+        </div>
+
+
+        <div class="step">
+
+          <div class="step-number">
+            03 / AIRDROP
+          </div>
+
+          <h3>Wait for the drop</h3>
+
+          <p>
+            Baka will review the reservation and airdrop the
+            corresponding Bot when distribution begins.
+          </p>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+
+  <!-- ====================================================
+       RESERVATION MODAL
+       ==================================================== -->
+
+  <div
+    id="modalOverlay"
+    class="modal-overlay"
+  >
+
+    <div class="modal">
+
+      <!-- NORMAL MODAL CONTENT -->
+      <div id="reservationContent">
+        <div class="modal-header">
+          <div>
+            <div id="modalEyebrow" class="eyebrow">BAKA BOTS / RESERVATION</div>
+            <h2 id="modalTitle">Found your Bot? 🤖</h2>
+          </div>
+          <button id="closeModal" class="modal-close" type="button">✕</button>
+        </div>
+
+        <div class="selected-bot">
+          <img id="modalBotImage" src="" alt="" />
+          <div>
+            <small>Selected Bot</small>
+            <strong id="modalUsername"></strong>
+            <small id="modalBotId"></small>
+          </div>
+        </div>
+
+        <div id="airdropOption" class="option airdrop">
+          <div class="option-title">✦ Receive your Bot airdrop</div>
+          <p>Submit your public Ethereum mainnet wallet address to reserve this Bot for its future airdrop.</p>
+          <input id="walletInput" class="wallet-input" type="text" placeholder="0x..." autocomplete="off" />
+          <button id="submitAirdrop" class="submit-airdrop" type="button">Reserve for Airdrop</button>
+          <div id="airdropMessage" class="form-message"></div>
+        </div>
+
+        <div id="reservedDetails" class="reserved-details" style="display:none;">
+          <h3>🤖 This Bot is reserved</h3>
+          <div class="detail-row"><span>Reserved by</span><strong id="reservedWallet">—</strong></div>
+          <div class="detail-row"><span>Airdrop</span><strong id="reservedAirdropStatus">Pending</strong></div>
+          <p class="raffle-note">The wallet is shortened for public display.</p>
+        </div>
+
+        <div class="option raffle">
+          <div class="option-title">🧶 Enter the Bot Plushie Raffle</div>
+          <p>Enter for a chance to win a handmade crochet Bot Plushie. You can buy multiple tickets.</p>
+          <p class="raffle-price">0.002 ETH per ticket · Ethereum Mainnet</p>
+          <p class="shipping">🇺🇸 🇨🇦 Shipping available to the US & Canada only.</p>
+          <p>The winner will be contacted by Baka after the raffle ends to arrange shipping. No shipping address is needed when entering.</p>
+          <button id="openRaffle" class="raffle-launch" type="button">Enter Plushie Raffle</button>
+        </div>
+
+        <div class="safety">Only submit a public wallet address. Baka will never ask for your seed phrase or private key.</div>
+      </div>
+
+      <div id="raffleScreen" style="display:none;">
+        <div class="modal-header">
+          <div>
+            <div class="eyebrow">BAKA BOTS / PLUSHIE RAFFLE</div>
+            <h2>Win a handmade Bot Plushie 🧶</h2>
+          </div>
+          <button id="closeRaffleModal" class="modal-close" type="button">✕</button>
+        </div>
+
+        <div class="selected-bot">
+          <img id="raffleBotImage" src="" alt="" />
+          <div><small>Raffle entry from</small><strong id="raffleUsername"></strong><small id="raffleBotId"></small></div>
+        </div>
+
+        <div id="raffleChooseStage" class="raffle-stage">
+          <h3>Choose your tickets</h3>
+          <p class="raffle-note">Each ticket is 0.002 ETH on Ethereum Mainnet.</p>
+          <div class="ticket-picker">
+            <button id="ticketMinus" class="ticket-button" type="button">−</button>
+            <div id="ticketCount" class="ticket-count">1</div>
+            <button id="ticketPlus" class="ticket-button" type="button">+</button>
+          </div>
+          <div id="raffleTotal" class="raffle-total">Total: 0.002 ETH</div>
+          <label class="raffle-check">
+            <input id="shippingCheck" type="checkbox" />
+            <span>I understand that shipping is available to the US & Canada only and that the winner will be contacted by @baka_artist for shipping information.</span>
+          </label>
+          <button id="continueRaffle" class="raffle-action" type="button" disabled>Continue to Payment</button>
+        </div>
+
+        <div id="rafflePaymentStage" class="raffle-stage" style="display:none;">
+          <h3>Send your raffle payment</h3>
+          <div class="payment-box">
+            <div id="paymentAmount" class="payment-amount">Send exactly 0.002 ETH</div>
+            <p class="raffle-note">Network: Ethereum Mainnet</p>
+            <div id="raffleWalletDisplay" class="raffle-wallet"></div>
+            <button id="copyRaffleWallet" class="copy-button" type="button">Copy Raffle Wallet</button>
+          </div>
+          <p class="raffle-note">ETH network gas is separate from the raffle entry amount. After sending, paste the Ethereum wallet address you used to send the raffle payment.</p>
+          <input id="raffleSenderWallet" class="wallet-input" type="text" placeholder="Wallet you paid from · 0x..." autocomplete="off" />
+          <button id="submitRaffle" class="raffle-action" type="button">Submit Raffle Entry</button>
+          <button id="backToTickets" class="copy-button" type="button">← Change Ticket Quantity</button>
+          <div id="raffleMessage" class="form-message"></div>
+        </div>
+
+        <div id="raffleSuccess" class="success-screen">
+          <div class="success-icon">🎟️</div>
+          <h2>Entry submitted!</h2>
+          <p id="raffleSuccessText"></p>
+          <button id="raffleDone" class="primary-button" type="button" style="margin-top:20px;">Done</button>
+        </div>
+      </div>
+
+      <!-- SUCCESS SCREEN -->
+
+      <div
+        id="successScreen"
+        class="success-screen"
+      >
+
+        <div class="success-icon">
+          ✓
+        </div>
+
+        <h2>
+          Bot reserved!
+        </h2>
+
+        <p id="successText">
+          Your wallet has been submitted for the future airdrop.
+        </p>
+
+        <button
+          id="doneButton"
+          class="primary-button"
+          style="margin-top:20px;"
+        >
+          Done
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ====================================================
+       FOOTER
+       ==================================================== -->
+
+  <footer>
+
+    <div class="container">
+
+      Baka Bots are hand-drawn by
+      <strong>@baka_artist</strong>.
+
+      <br />
+
+      A reservation records an airdrop request and does not
+      require you to send ETH.
+
+    </div>
+
+  </footer>
+
+
+  <!-- ====================================================
+       JAVASCRIPT
+       ==================================================== -->
+
+  <script>
+    const API_URL = "https://script.google.com/macros/s/AKfycbw6UjesvZBmufHckMHKqsoAHB8JRbgnpvADXPfyOysb6JtCxOZCpDX0sUJDkkXVt7sJ/exec";
+    const RAFFLE_WALLET = "0xbB9D5006E01c0898c88FA8290C1F54d9527D14E9";
+    const TICKET_PRICE_ETH = 0.002;
+
+    const $ = id => document.getElementById(id);
+    const usernameInput=$("usernameInput"), searchButton=$("searchButton"), message=$("message"), results=$("results");
+    const modalOverlay=$("modalOverlay"), closeModalButton=$("closeModal"), closeRaffleModal=$("closeRaffleModal");
+    const modalEyebrow=$("modalEyebrow"), modalTitle=$("modalTitle"), modalBotImage=$("modalBotImage"), modalUsername=$("modalUsername"), modalBotId=$("modalBotId");
+    const reservationContent=$("reservationContent"), airdropOption=$("airdropOption"), reservedDetails=$("reservedDetails"), reservedWallet=$("reservedWallet"), reservedAirdropStatus=$("reservedAirdropStatus");
+    const walletInput=$("walletInput"), submitAirdrop=$("submitAirdrop"), airdropMessage=$("airdropMessage");
+    const successScreen=$("successScreen"), successText=$("successText"), doneButton=$("doneButton");
+    const openRaffleButton=$("openRaffle"), raffleScreen=$("raffleScreen"), raffleBotImage=$("raffleBotImage"), raffleUsername=$("raffleUsername"), raffleBotId=$("raffleBotId");
+    const raffleChooseStage=$("raffleChooseStage"), rafflePaymentStage=$("rafflePaymentStage"), raffleSuccess=$("raffleSuccess");
+    const ticketMinus=$("ticketMinus"), ticketPlus=$("ticketPlus"), ticketCount=$("ticketCount"), raffleTotal=$("raffleTotal"), shippingCheck=$("shippingCheck"), continueRaffle=$("continueRaffle");
+    const paymentAmount=$("paymentAmount"), raffleWalletDisplay=$("raffleWalletDisplay"), copyRaffleWallet=$("copyRaffleWallet");
+    const raffleSenderWallet=$("raffleSenderWallet"), submitRaffle=$("submitRaffle"), backToTickets=$("backToTickets"), raffleMessage=$("raffleMessage"), raffleSuccessText=$("raffleSuccessText"), raffleDone=$("raffleDone");
+    const verifiedTicketCount=$("verifiedTicketCount"), raffleEntries=$("raffleEntries"), raffleCounterButton=$("raffleCounterButton"), rafflePopover=$("rafflePopover"), closeRafflePopover=$("closeRafflePopover");
+
+    let selectedBot=null, raffleTickets=1;
+
+    async function loadRaffleStats(){
+      try{
+        const r=await fetch(API_URL+"?action=rafflestats");
+        const d=await r.json();
+        if(!d.success) return;
+
+        const total=Number(d.verified_tickets)||0;
+        verifiedTicketCount.textContent=total;
+
+        const entries=Array.isArray(d.entries)?d.entries:[];
+        if(!entries.length){
+          raffleEntries.innerHTML='<div class="raffle-empty">No verified entries yet.</div>';
+          return;
+        }
+
+        raffleEntries.innerHTML=entries.map(entry=>`
+          <div class="raffle-entry">
+            <div class="raffle-entry-user">${escapeHTML(entry.username||"Unknown")}</div>
+            <div class="raffle-entry-wallet">${escapeHTML(entry.wallet_display||"")}</div>
+            <div class="raffle-entry-tickets">${Number(entry.tickets)||0} ${Number(entry.tickets)===1?"ticket":"tickets"}</div>
+          </div>
+        `).join("");
+      }catch(err){ console.error("Raffle stats:",err); }
+    }
+
+    async function searchBots(){
+      const username=usernameInput.value.trim();
+      message.className=""; message.textContent=""; results.innerHTML="";
+      if(!username){ message.className="error"; message.textContent="Enter your X username first 🤖"; return; }
+      searchButton.disabled=true; searchButton.textContent="Searching...";
+      try{
+        const r=await fetch(API_URL+"?action=search&username="+encodeURIComponent(username));
+        if(!r.ok) throw new Error("Could not connect to the Bot database.");
+        const d=await r.json();
+        if(!d.success) throw new Error(d.error||"Something went wrong.");
+        if(!d.found||!d.bots.length){ message.textContent="No Bot found for that username yet 👀"; return; }
+        message.className="success";
+        message.textContent=d.bots.length===1?"Found your Bot! 🤖":`Found ${d.bots.length} Bots for you! 🤖`;
+        displayBots(d.bots);
+      }catch(err){ console.error(err); message.className="error"; message.textContent="Couldn't search right now. Try again in a moment."; }
+      finally{ searchButton.disabled=false; searchButton.textContent="Search"; }
+    }
+
+    function displayBots(bots){
+      results.innerHTML="";
+      bots.forEach(bot=>{
+        const card=document.createElement("article");
+        card.className="bot-card";
+        const isAvailable=String(bot.status||"available").toLowerCase()==="available";
+        card.innerHTML=`
+          <div class="bot-image-wrap"><img class="bot-image" src="${escapeHTML(bot.image_url)}" alt="${escapeHTML(bot.username)} Bot" /></div>
+          <div class="bot-info">
+            <div class="bot-username">${escapeHTML(bot.username)}</div>
+            <div class="bot-id">${escapeHTML(bot.bot_id)}</div>
+            <div class="status-row"><div class="status ${isAvailable?"available":"reserved"}">● ${isAvailable?"Available":"Reserved"}</div></div>
+            <button class="reserve-button ${isAvailable?"":"view-reservation"}" type="button">${isAvailable?"Reserve this Bot":"View Reservation"}</button>
+          </div>`;
+        card.querySelector(".reserve-button").addEventListener("click",()=>openBotModal(bot));
+        results.appendChild(card);
+      });
+    }
+
+    function openBotModal(bot){
+      selectedBot=bot;
+      const isReserved=String(bot.status||"").toLowerCase()==="reserved";
+      modalBotImage.src=bot.image_url; modalBotImage.alt=bot.username+" Bot";
+      modalUsername.textContent=bot.username; modalBotId.textContent=bot.bot_id;
+      walletInput.value=""; airdropMessage.textContent=""; airdropMessage.className="form-message";
+      reservationContent.style.display="block"; successScreen.style.display="none"; raffleScreen.style.display="none";
+      if(isReserved){
+        modalEyebrow.textContent="BAKA BOTS / RESERVATION DETAILS"; modalTitle.textContent="This Bot is reserved 🤖";
+        airdropOption.style.display="none"; reservedDetails.style.display="block";
+        reservedWallet.textContent=bot.wallet_display||"Reserved";
+        reservedAirdropStatus.textContent=bot.airdrop_status||"Pending";
+      }else{
+        modalEyebrow.textContent="BAKA BOTS / RESERVATION"; modalTitle.textContent="Found your Bot? 🤖";
+        airdropOption.style.display="block"; reservedDetails.style.display="none";
+      }
+      modalOverlay.classList.add("open"); document.body.style.overflow="hidden";
+    }
+
+    function closeModal(){ modalOverlay.classList.remove("open"); document.body.style.overflow=""; selectedBot=null; resetRaffle(); }
+    function validEthereumAddress(v){ return /^0x[a-fA-F0-9]{40}$/.test(v); }
+
+    async function reserveAirdrop(){
+      if(!selectedBot)return;
+      const wallet=walletInput.value.trim();
+      airdropMessage.className="form-message";
+      if(!validEthereumAddress(wallet)){ airdropMessage.classList.add("error"); airdropMessage.textContent="Please enter a valid Ethereum address."; return; }
+      submitAirdrop.disabled=true; submitAirdrop.textContent="Reserving...";
+      try{
+        const r=await fetch(API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action:"reserve",bot_id:selectedBot.bot_id,wallet})});
+        const d=await r.json(); if(!d.success)throw new Error(d.error||"Reservation failed.");
+        reservationContent.style.display="none"; successScreen.style.display="block";
+        successText.textContent=`${selectedBot.username} / ${selectedBot.bot_id} has been reserved for ${shortWallet(wallet)}. Baka will handle the future airdrop.`;
+      }catch(err){ airdropMessage.className="form-message error"; airdropMessage.textContent=err.message||"Couldn't reserve this Bot."; }
+      finally{ submitAirdrop.disabled=false; submitAirdrop.textContent="Reserve for Airdrop"; }
+    }
+
+    function openRaffle(){
+      if(!selectedBot)return;
+      reservationContent.style.display="none"; successScreen.style.display="none"; raffleScreen.style.display="block";
+      raffleBotImage.src=selectedBot.image_url; raffleBotImage.alt=selectedBot.username+" Bot";
+      raffleUsername.textContent=selectedBot.username; raffleBotId.textContent=selectedBot.bot_id;
+      resetRaffle(); raffleScreen.style.display="block";
+    }
+
+    function resetRaffle(){
+      raffleTickets=1;
+      if(!raffleChooseStage)return;
+      raffleChooseStage.style.display="block"; rafflePaymentStage.style.display="none"; raffleSuccess.style.display="none";
+      shippingCheck.checked=false; continueRaffle.disabled=true; raffleSenderWallet.value="";
+      raffleMessage.textContent=""; raffleMessage.className="form-message"; raffleWalletDisplay.textContent=RAFFLE_WALLET; updateTicketUI();
+    }
+
+    function formatEth(n){ return Number(n).toFixed(6).replace(/0+$/,"").replace(/\.$/,""); }
+    function updateTicketUI(){
+      const total=Number((raffleTickets*TICKET_PRICE_ETH).toFixed(6));
+      ticketCount.textContent=raffleTickets; raffleTotal.textContent=`Total: ${formatEth(total)} ETH`; paymentAmount.textContent=`Send exactly ${formatEth(total)} ETH`;
+      ticketMinus.disabled=raffleTickets<=1;
+      submitRaffle.textContent=`Submit ${raffleTickets} ${raffleTickets===1?"Ticket":"Tickets"}`;
+    }
+    function changeTickets(n){ raffleTickets=Math.max(1,raffleTickets+n); updateTicketUI(); }
+
+    async function copyWallet(){
+      try{ await navigator.clipboard.writeText(RAFFLE_WALLET); copyRaffleWallet.textContent="Copied! ✓"; setTimeout(()=>copyRaffleWallet.textContent="Copy Raffle Wallet",1400); }
+      catch(err){ copyRaffleWallet.textContent="Copy failed — select address above"; }
+    }
+
+    async function submitRaffleEntry(){
+      if(!selectedBot)return;
+      const wallet=raffleSenderWallet.value.trim();
+      raffleMessage.className="form-message"; raffleMessage.textContent="";
+      if(!validEthereumAddress(wallet)){ raffleMessage.classList.add("error"); raffleMessage.textContent="Please paste the Ethereum wallet you used to send the raffle payment."; return; }
+      submitRaffle.disabled=true; submitRaffle.textContent="Submitting...";
+      try{
+        const payload={action:"raffle",bot_id:selectedBot.bot_id,wallet,tickets:raffleTickets};
+        const r=await fetch(API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)});
+        const d=await r.json(); if(!d.success)throw new Error(d.error||"Raffle entry could not be submitted.");
+        rafflePaymentStage.style.display="none"; raffleChooseStage.style.display="none"; raffleSuccess.style.display="block";
+        raffleSuccessText.textContent=`${d.tickets} ${d.tickets===1?"ticket":"tickets"} · ${formatEth(d.amount_eth)} ETH. Payment verification: ${d.payment_status}. Your tickets will appear in the public count after verification.`;
+        loadRaffleStats();
+      }catch(err){ raffleMessage.className="form-message error"; raffleMessage.textContent=err.message||"Couldn't submit the raffle entry."; }
+      finally{ submitRaffle.disabled=false; updateTicketUI(); }
+    }
+
+    function shortWallet(w){ return w.slice(0,6)+"..."+w.slice(-4); }
+    function escapeHTML(v){ return String(v).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;"); }
+
+    function setRafflePopover(open){
+      rafflePopover.classList.toggle("open",open);
+      raffleCounterButton.setAttribute("aria-expanded",String(open));
+    }
+
+    raffleCounterButton.addEventListener("click",()=>setRafflePopover(!rafflePopover.classList.contains("open")));
+    closeRafflePopover.addEventListener("click",()=>setRafflePopover(false));
+
+    searchButton.addEventListener("click",searchBots);
+    let searchTimer;
+    usernameInput.addEventListener("input",()=>{ clearTimeout(searchTimer); const v=usernameInput.value.trim(); if(!v){results.innerHTML="";message.textContent="";return;} searchTimer=setTimeout(searchBots,300); });
+    usernameInput.addEventListener("keydown",e=>{if(e.key==="Enter")searchBots();});
+    submitAirdrop.addEventListener("click",reserveAirdrop);
+    openRaffleButton.addEventListener("click",openRaffle);
+    ticketMinus.addEventListener("click",()=>changeTickets(-1));
+    ticketPlus.addEventListener("click",()=>changeTickets(1));
+    shippingCheck.addEventListener("change",()=>continueRaffle.disabled=!shippingCheck.checked);
+    continueRaffle.addEventListener("click",()=>{if(shippingCheck.checked){raffleChooseStage.style.display="none";rafflePaymentStage.style.display="block";updateTicketUI();}});
+    backToTickets.addEventListener("click",()=>{rafflePaymentStage.style.display="none";raffleChooseStage.style.display="block";});
+    copyRaffleWallet.addEventListener("click",copyWallet);
+    submitRaffle.addEventListener("click",submitRaffleEntry);
+    closeModalButton.addEventListener("click",closeModal); closeRaffleModal.addEventListener("click",closeModal);
+    doneButton.addEventListener("click",()=>{closeModal();searchBots();});
+    raffleDone.addEventListener("click",closeModal);
+    modalOverlay.addEventListener("click",e=>{if(e.target===modalOverlay)closeModal();});
+    document.addEventListener("keydown",e=>{if(e.key==="Escape"&&modalOverlay.classList.contains("open"))closeModal();});
+    loadRaffleStats();
+  </script>
+
+</body>
+</html>
