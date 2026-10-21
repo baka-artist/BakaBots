@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Baka Bots</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Toggle light/dark mode">🌙</button>
+  <!-- ====================================================
+       HERO
+       ==================================================== -->
+
+  <header class="hero">
+
+    <div class="container">
+
+      <div class="eyebrow">
+        A SMALL INTERNET EXPERIMENT / 001
+      </div>
+
+      <div class="brand-lockup">
+        <img class="brand-pfp" src="baka-pfp.png" alt="Baka artist profile picture" />
+        <div class="brand-copy">
+          <h1>BAKA <span>BOTS</span></h1>
+          <a class="brand-social" href="https://x.com/baka_artist" target="_blank" rel="noopener noreferrer">
+            <span class="brand-social-x">X</span>
+            @baka_artist
+          </a>
+        </div>
+      </div>
+
+      <p class="hero-text">
+        A growing collection of tiny Bot PFPs drawn one by one
+        in Illustrator. Search your X username to find the Bot
+        made for you.
+      </p>
+
+      <div class="handmade-pill">
+        <span class="live-dot"></span>
+        Hand-drawn by Baka · No AI-generated artwork
+      </div>
+
+      <div class="baka-palette" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- ====================================================
+       MAIN
+       ==================================================== -->
+
+  <main>
+
+    <div class="container">
+
+      <div class="raffle-counter">
+        <button id="raffleCounterButton" class="raffle-counter-button" type="button" aria-expanded="false">
+          <span>
+            <small>🎟️ Plushie Raffle</small>
+            <strong><span id="verifiedTicketCount">0</span> verified tickets</strong>
+          </span>
+          <span class="raffle-counter-arrow">VIEW ↘</span>
+        </button>
+
+        <div id="rafflePopover" class="raffle-popover">
+          <div class="raffle-popover-header">
+            <strong>Verified raffle entries</strong>
+            <button id="closeRafflePopover" class="raffle-popover-close" type="button" aria-label="Close raffle entries">✕</button>
+          </div>
+          <div id="raffleEntries" class="raffle-entries"></div>
+        </div>
+      </div>
+
+      <section class="search-section">
+
+        <h2>Find your Bot 🤖</h2>
+
+        <p>
+          Enter the X username associated with your Bot.
+        </p>
+
+        <div class="search-box">
+
+          <input
+            id="usernameInput"
+            type="text"
+            placeholder="@username"
+            autocomplete="off"
+          />
+
+          <button
+            id="searchButton"
+            class="primary-button"
+          >
+            Search
+          </button>
+
+        </div>
+
+        <div id="message"></div>
+
+      </section>
+
+
+      <!-- RESULTS -->
+
+      <section
+        id="results"
+        class="results"
+      ></section>
+
+
+      <!-- HOW IT WORKS -->
+
+      <section class="how-it-works">
+
+        <div class="step">
+
+          <div class="step-number">
+            01 / FIND
+          </div>
+
+          <h3>Search your username</h3>
+
+          <p>
+            Find the Bot artwork associated with your X account.
+          </p>
+
+        </div>
+
+
+        <div class="step">
+
+          <div class="step-number">
+            02 / RESERVE
+          </div>
+
+          <h3>Submit your wallet</h3>
+
+          <p>
+            Reserve your Bot by submitting your public Ethereum
+            mainnet wallet address.
+          </p>
+
+        </div>
+
+
+        <div class="step">
+
+          <div class="step-number">
+            03 / AIRDROP
+          </div>
+
+          <h3>Wait for the drop</h3>
+
+          <p>
+            Baka will review the reservation and airdrop the
+            corresponding Bot when distribution begins.
+          </p>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+
+  <!-- ====================================================
+       RESERVATION MODAL
+       ==================================================== -->
+
+  <div
+    id="modalOverlay"
+    class="modal-overlay"
+  >
+
+    <div class="modal">
+
+      <!-- NORMAL MODAL CONTENT -->
+      <div id="reservationContent">
+        <div class="modal-header">
+          <div>
+            <div id="modalEyebrow" class="eyebrow">BAKA BOTS / RESERVATION</div>
+            <h2 id="modalTitle">Found your Bot? 🤖</h2>
+          </div>
+          <button id="closeModal" class="modal-close" type="button">✕</button>
+        </div>
+
+        <div class="selected-bot">
+          <img id="modalBotImage" src="" alt="" />
+          <div>
+            <small>Selected Bot</small>
+            <strong id="modalUsername"></strong>
+            <small id="modalBotId"></small>
+          </div>
+        </div>
+
+        <div id="airdropOption" class="option airdrop">
+          <div class="option-title">✦ Receive your Bot airdrop</div>
+          <p>Submit your public Ethereum mainnet wallet address to reserve this Bot for its future airdrop.</p>
+          <input id="walletInput" class="wallet-input" type="text" placeholder="0x..." autocomplete="off" />
+          <button id="submitAirdrop" class="submit-airdrop" type="button">Reserve for Airdrop</button>
+          <div id="airdropMessage" class="form-message"></div>
+        </div>
+
+        <div id="reservedDetails" class="reserved-details" style="display:none;">
+          <h3>🤖 This Bot is reserved</h3>
+          <div class="detail-row"><span>Reserved by</span><strong id="reservedWallet">—</strong></div>
+          <div class="detail-row"><span>Airdrop</span><strong id="reservedAirdropStatus">Pending</strong></div>
+          <p class="raffle-note">The wallet is shortened for public display.</p>
+        </div>
+
+        <div class="option raffle">
+          <div class="option-title">🧶 Enter the Bot Plushie Raffle</div>
+          <p>Enter for a chance to win a handmade crochet Bot Plushie. You can buy multiple tickets.</p>
+          <p class="raffle-price">0.002 ETH per ticket · Ethereum Mainnet</p>
+          <p class="shipping">🇺🇸 🇨🇦 Shipping available to the US & Canada only.</p>
+          <p>The winner will be contacted by Baka after the raffle ends to arrange shipping. No shipping address is needed when entering.</p>
+
+          <!-- FUTURE PLUSHIE PHOTO:
+               Upload the finished photo, set the img src below,
+               then change class="plushie-showcase" to "plushie-showcase has-image". -->
+          <div class="plushie-showcase">
+            <img src="" alt="Handmade Bot Plushie raffle prize" />
+            <div>
+              <strong>Win the handmade Bot Plushie ✨</strong>
+              <p>The finished raffle prize will be shown here.</p>
+            </div>
+          </div>
+
+          <button id="openRaffle" class="raffle-launch" type="button">Enter Plushie Raffle</button>
+        </div>
+
+        <div class="safety">Only submit a public wallet address. Baka will never ask for your seed phrase or private key.</div>
+      </div>
+
+      <div id="raffleScreen" style="display:none;">
+        <div class="modal-header">
+          <div>
+            <div class="eyebrow">BAKA BOTS / PLUSHIE RAFFLE</div>
+            <h2>Win a handmade Bot Plushie 🧶</h2>
+          </div>
+          <button id="closeRaffleModal" class="modal-close" type="button">✕</button>
+        </div>
+
+        <div class="selected-bot">
+          <img id="raffleBotImage" src="" alt="" />
+          <div><small>Raffle entry from</small><strong id="raffleUsername"></strong><small id="raffleBotId"></small></div>
+        </div>
+
+        <div id="raffleChooseStage" class="raffle-stage">
+          <h3>Choose your tickets</h3>
+          <p class="raffle-note">Each ticket is 0.002 ETH on Ethereum Mainnet.</p>
+          <div class="ticket-picker">
+            <button id="ticketMinus" class="ticket-button" type="button">−</button>
+            <div id="ticketCount" class="ticket-count">1</div>
+            <button id="ticketPlus" class="ticket-button" type="button">+</button>
+          </div>
+          <div id="raffleTotal" class="raffle-total">Total: 0.002 ETH</div>
+          <label class="raffle-check">
+            <input id="shippingCheck" type="checkbox" />
+            <span>I understand that shipping is available to the US & Canada only and that the winner will be contacted by @baka_artist for shipping information.</span>
+          </label>
+          <button id="continueRaffle" class="raffle-action" type="button" disabled>Continue to Payment</button>
+        </div>
+
+        <div id="rafflePaymentStage" class="raffle-stage" style="display:none;">
+          <h3>Send your raffle payment</h3>
+          <div class="payment-box">
+            <div id="paymentAmount" class="payment-amount">Send exactly 0.002 ETH</div>
+            <p class="raffle-note">Network: Ethereum Mainnet</p>
+            <div id="raffleWalletDisplay" class="raffle-wallet"></div>
+            <button id="copyRaffleWallet" class="copy-button" type="button">Copy Raffle Wallet</button>
+          </div>
+          <p class="raffle-note">ETH network gas is separate from the raffle entry amount. After sending, paste the Ethereum wallet address you used to send the raffle payment.</p>
+          <input id="raffleSenderWallet" class="wallet-input" type="text" placeholder="Wallet you paid from · 0x..." autocomplete="off" />
+          <button id="submitRaffle" class="raffle-action" type="button">Submit Raffle Entry</button>
+          <button id="backToTickets" class="copy-button" type="button">← Change Ticket Quantity</button>
+          <div id="raffleMessage" class="form-message"></div>
+        </div>
+
+        <div id="raffleSuccess" class="success-screen">
+          <div class="success-icon">🎟️</div>
+          <h2>Entry submitted!</h2>
+          <p id="raffleSuccessText"></p>
+          <button id="raffleDone" class="primary-button" type="button" style="margin-top:20px;">Done</button>
+        </div>
+      </div>
+
+      <!-- SUCCESS SCREEN -->
+
+      <div
+        id="successScreen"
+        class="success-screen"
+      >
+
+        <div class="success-icon">
+          ✓
+        </div>
+
+        <h2>
+          Bot reserved!
+        </h2>
+
+        <p id="successText">
+          Your wallet has been submitted for the future airdrop.
+        </p>
+
+        <button
+          id="doneButton"
+          class="primary-button"
+          style="margin-top:20px;"
+        >
+          Done
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ====================================================
+       FOOTER
+       ==================================================== -->
+
+  <footer>
+
+    <div class="container">
+
+      Baka Bots are hand-drawn by
+      <strong>@baka_artist</strong>.
+
+      <br />
+
+      A reservation records an airdrop request and does not
+      require you to send ETH.
+
+    </div>
+
+  </footer>
+
+
+  <!-- ====================================================
+       JAVASCRIPT
+       ==================================================== -->
+  <script src="script.js"></script>
+
+</body>
+</html>
