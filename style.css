@@ -1295,18 +1295,43 @@ html[data-theme="dark"] .submit-airdrop { color:#07110f; }
 
 @media (prefers-reduced-motion: reduce) { .hero-bot { animation:none; } .bot-card { transition:none; } }
 
-/* HERO COPY CLEANUP — keep the original refresh layout exactly as-is */
-.hero .hero-text,
-.hero .handmade-pill,
-.hero .baka-palette {
-  display: none !important;
-}
+/* ======================================================
+   2026-10 HERO READABILITY PATCH
+   Keeps floating Bots out of the intro copy on desktop.
+   ====================================================== */
+@media (min-width: 761px) {
+  .hero .container {
+    position: relative;
+    z-index: 3;
+  }
 
+  /* Give the intro copy an opaque-ish reading surface without looking like a card. */
+  .hero .eyebrow,
+  .hero .brand-lockup,
+  .hero .hero-text,
+  .hero .handmade-pill,
+  .hero .baka-palette {
+    position: relative;
+    z-index: 4;
+  }
 
-/* Hide the old hero copy WITHOUT changing its layout/spacing.
-   visibility:hidden preserves the exact space the original elements occupied. */
-.hero .hero-text,
-.hero .handmade-pill,
-.hero .baka-palette {
-  visibility: hidden !important;
+  /* Keep the left/middle reading zone clear. */
+  .bot-d { left: -7%; bottom: -15%; }
+  .bot-f { left: 2%; top: 2%; width: clamp(62px, 6vw, 92px); opacity: .48; }
+  .bot-g { left: 7%; bottom: -16%; }
+  .bot-j { left: -5%; top: 57%; width: clamp(60px, 6vw, 92px); opacity: .48; }
+
+  /* Move center Bots away from the paragraph/badge area. */
+  .bot-h { right: 38%; bottom: -17%; }
+  .bot-c { right: 29%; top: 4%; }
+
+  /* Slightly stronger fade over the copy side of the hero. */
+  .hero:after {
+    background: linear-gradient(90deg,
+      var(--bg) 0%,
+      color-mix(in srgb, var(--bg) 98%, transparent) 38%,
+      color-mix(in srgb, var(--bg) 82%, transparent) 58%,
+      transparent 82%
+    );
+  }
 }
